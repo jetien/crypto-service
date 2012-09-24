@@ -31,7 +31,7 @@ This projects contains:
     expect(svc.getParameterValue("ie", url)).toBe("UTF-8");
     expect(svc.getParameterValue("q", url)).toBe("node.js");
 
-### Others features    
+### Other features    
 
 * Multiple paramter values are supported as _array_ and are parsed from `foo[]=1&foo[]=2` as well as `foo=1&foo-2`.
 * If the url parameter is not specified, it automatically use the `window.location.href`
