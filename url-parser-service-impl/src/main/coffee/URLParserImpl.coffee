@@ -38,7 +38,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   ###
   getScheme: (url) ->
     if not url? and window?.location?.protocol? then return window.location.protocol
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.scheme
 
   ###*
@@ -50,7 +50,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   ###
   getHost: (url) ->
     if not url? and window?.location?.hostname? then return window.location.hostname
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.host
 
   ###*
@@ -62,7 +62,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   ###
   getPort: (url) ->
     if not url? and window?.location?.port? then return parseInt(window.location.port)
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.port
 
   ###*
@@ -74,7 +74,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   ###
   getPath: (url) ->
     if not url? and window?.location?.pathname? then return window.location.pathname
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.path
 
   ###*
@@ -86,7 +86,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   ###
   getQuery: (url) ->
     # Do the parsing ourself without relying on the window.location.search
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.query
 
   ###*
@@ -98,7 +98,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   ###
   getHash: (url) ->
     if not url? and window?.location?.hash? then return window.location.hash
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.hash
 
   ###*
@@ -109,7 +109,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   @param {String} url the url to parse, if not set use `window.location`
   ###
   getParameters: (url) ->
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.parameters
 
   ###*
@@ -121,7 +121,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   @param {String} url the url to parse, if not set use `window.location`
   ###
   getParameterValue: (parameter, url) ->
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.parameters[parameter][0] if result.parameters[parameter]?
     return null
 
@@ -134,7 +134,7 @@ scope.URLService.DefaultURLParser.DefaultURLParserImpl = class DefaultURLParserI
   @param {String} url the url to parse, if not set use `window.location`
   ###
   getParameterValues: (parameter, url) ->
-    result = if url? then @._parse(url) else @._parse(window.location)
+    result = if url? then @._parse(url) else @._parse(window.location.href)
     return result.parameters[parameter] if result.parameters[parameter]?
     return null
 
