@@ -9,6 +9,14 @@ This projects contains:
 
 ## Example of usage
 
+### Declaring the component on the hub
+
+	hub
+            .registerComponent(new URLService.DefaultURLParser.DefaultURLParserImpl())
+            .start();
+
+### Using the service            
+
 	var ref = hub.getServiceReference(URLService.URLParser)
     var svc =  hub.getService(hub, ref)
 	url = "http://www.google.com/search?sugexp=chrome,mod=16&sourceid=chrome&ie=UTF-8&q=node.js"
@@ -22,6 +30,8 @@ This projects contains:
     expect(svc.getParameterValue("sourceid", url)).toBe("chrome");
     expect(svc.getParameterValue("ie", url)).toBe("UTF-8");
     expect(svc.getParameterValue("q", url)).toBe("node.js");
+
+### Others features    
 
 * Multiple paramter values are supported as _array_ and are parsed from `foo[]=1&foo[]=2` as well as `foo=1&foo-2`.
 * If the url parameter is not specified, it automatically use the `window.location.href`
