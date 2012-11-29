@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.nano.url</groupId>
-    <artifactId>url-service-project</artifactId>
+    <groupId>org.nano.crypto</groupId>
+    <artifactId>crypto-service-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>nano :: url parser service project</name>
+    <name>nano :: crypto service project</name>
     <packaging>pom</packaging>
 
     <parent>
@@ -28,8 +28,10 @@
     </licenses>
 	
 	<modules>
-		<module>url-parser-service</module>
-		<module>url-parser-service-impl</module>
+		<module>crypto-service</module>
+		<module>md5-crypto-service</module>
+        <module>sha1-crypto-service</module>
+        <!--<module>aes-crypto-service</module>-->
 	</modules>
 	
 	 <distributionManagement>
