@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.nano.crypto</groupId>
+        <groupId>org.nanoko.crypto</groupId>
         <artifactId>crypto-service-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.nano.crypto</groupId>
+            <groupId>org.nanoko.crypto</groupId>
             <artifactId>crypto-service</artifactId>
             <type>js</type>
             <classifier>min</classifier>
@@ -21,7 +21,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.nano.libs</groupId>
+            <groupId>org.nanoko.libs</groupId>
             <artifactId>cryptoJS-aes</artifactId>
             <version>3.0.2</version>
             <type>js</type>
@@ -29,7 +29,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.nano</groupId>
+            <groupId>org.nanoko</groupId>
             <artifactId>h-ubu</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <type>js</type>
@@ -39,7 +39,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.nano.coffee-mill</groupId>
+                <groupId>org.nanoko.coffee-mill</groupId>
                 <artifactId>coffee-mill-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
@@ -72,7 +72,7 @@
                         </plugin>
                         
                         <plugin>
-                            <groupId>org.nano.coffee-mill</groupId>
+                            <groupId>org.nanoko.coffee-mill</groupId>
                             <artifactId>coffee-mill-maven-plugin</artifactId>
                             <version>1.0.0-SNAPSHOT</version>
                             <configuration>

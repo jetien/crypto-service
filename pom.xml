@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.nano.crypto</groupId>
+    <groupId>org.nanoko.crypto</groupId>
     <artifactId>crypto-service-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>nano :: crypto service project</name>
+    <name>nanoko :: crypto service project</name>
     <packaging>pom</packaging>
 
     <parent>
@@ -31,7 +31,7 @@
 		<module>crypto-service</module>
 		<module>md5-crypto-service</module>
         <module>sha1-crypto-service</module>
-        <!--<module>aes-crypto-service</module>-->
+        <module>aes-crypto-service</module>
 	</modules>
 	
 	 <distributionManagement>
@@ -54,7 +54,7 @@
     	<pluginManagement>
 	    	<plugins>
     	    	<plugin>
-        	  		<groupId>org.nano.coffee-mill</groupId>
+        	  		<groupId>org.nanoko.coffee-mill</groupId>
 					<artifactId>coffee-mill-maven-plugin</artifactId>
 	       			<version>1.0.0-SNAPSHOT</version>
 		        </plugin>
