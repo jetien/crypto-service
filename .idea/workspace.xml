@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1067a59e-97c9-4420-83ca-f0b9443229be" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/crypto-service.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aes-crypto-service/src/main/coffee/AESCipherService.coffee" afterPath="$PROJECT_DIR$/aes-crypto-service/src/main/coffee/AESCipherService.coffee" />
     </list>
     <ignored path="crypto-service.iws" />
@@ -20,14 +28,14 @@
     <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/www/wisdomApp-1.0-SNAPSHOT.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386926263336" ignored="false" />
     <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/Uju.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386927525758" ignored="false" />
     <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/jquery.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386927525758" ignored="false" />
-    <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/sha1-crypto-service.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386931808089" ignored="false" />
+    <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/sha1-crypto-service.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386932138695" ignored="false" />
     <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/crypto-service.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386927525758" ignored="false" />
     <file path="/AESCipherService.coffee" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386929625435" ignored="false" />
     <file path="$PROJECT_DIR$/../javascript-libraries/cryptoJs/modules/aes/pom.xml" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386930706739" ignored="false" />
     <file path="$PROJECT_DIR$/../javascript-libraries/cryptoJs/modules/pbkdf2/pom.xml" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386930985695" ignored="false" />
     <file path="$PROJECT_DIR$/../javascript-libraries/cryptoJs/pom.xml" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386931065209" ignored="false" />
-    <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/cryptoJS-sha1.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386931808089" ignored="false" />
-    <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/cryptoJS-core.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386931808089" ignored="false" />
+    <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/cryptoJS-sha1.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386932138695" ignored="false" />
+    <file path="$PROJECT_DIR$/../../JulienUbiTest/Tests/wisdomTest/wisdomApp/target/libs/cryptoJS-core.js" changelist="1067a59e-97c9-4420-83ca-f0b9443229be" time="1386932138695" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
