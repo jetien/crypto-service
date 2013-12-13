@@ -29,6 +29,14 @@
         </dependency>
 
         <dependency>
+          <groupId>org.nanoko.libs</groupId>
+          <artifactId>cryptoJS-pbkdf2</artifactId>
+          <version>3.0.2</version>
+          <classifier>rollups</classifier>
+          <type>js</type>
+        </dependency>
+
+        <dependency>
             <groupId>org.nanoko</groupId>
             <artifactId>h-ubu</artifactId>
             <version>1.0.0</version>
