@@ -12,6 +12,10 @@ scope.CryptoService.AESCipherService = class AESCipherService
   configure: (hub, configuration) ->
     @_hub = hub
     @_logger = new Logger("AES Cipher Service")
+    # AES encrypt key size (Default:256)
+    @keySize = if configuration?.keySize then (configuration.keySize / 32) else (256 / 32)
+    # AES salt iteration (Default:20)
+    @iterationCount = if configuration?.iterationCount then configuration.iterationCount else 20
     @_hub.provideService({
       component: @,
       contract: window.CryptoService.CipherService,
@@ -24,7 +28,25 @@ scope.CryptoService.AESCipherService = class AESCipherService
     
   stop : ->
     
-  getComponentName : -> return "AESCipherService"  
+  getComponentName : -> return "AESCipherService"
+
+
+  ###*
+  Generate key with the PBKDF2 algorithm for the salting process
+  @return {String} then generated key
+  @method
+  @name #generateKey
+  @memborOf CryptoService.CipherService
+  @param {String} the salt hex key
+  @param {String} the passPhrase key
+  ###
+  generateKey: (salt, passPhrase) ->
+    genKey = CryptoJS.PBKDF2(
+      passPhrase,
+      CryptoJS.enc.Hex.parse(salt),
+      { keySize: @keySize, iterations: @iterationCount })
+    return genKey
+
 
   ###*
   Encodes the given message using the AES Cipher algorithm.
@@ -36,8 +58,14 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the encoding key
   @param {Object} optional others parameters
   ###
-  encode: (message, key) ->
-    return CryptoJS.AES.encrypt(message, key).toString()
+  encode: (message, key, salt, iv) ->
+    #return CryptoJS.AES.encrypt(message, key).toString()
+    genKey = this.generateKey(salt, key)
+    encrypted = CryptoJS.AES.encrypt(
+      message,
+      genKey,
+      { iv: CryptoJS.enc.Hex.parse(iv) });
+    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
 
   ###*
   Decodes the given encoded message using the AES Cipher algorithm
@@ -49,5 +77,15 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the encoding key
   @param {Object} optional others parameters
   ###
-  decode: (message, key) ->
-    return CryptoJS.AES.decrypt(message, key).toString(CryptoJS.enc.Utf8)
+  decode: (message, key, salt, iv) ->
+    #return CryptoJS.AES.decrypt(message, key).toString(CryptoJS.enc.Utf8)
+    genKey = this.generateKey(salt, key)
+    cipherParams = CryptoJS.lib.CipherParams.create({
+      ciphertext: CryptoJS.enc.Base64.parse(message)
+    })
+    decrypted = CryptoJS.AES.decrypt(
+      cipherParams,
+      genKey,
+      { iv: CryptoJS.enc.Hex.parse(iv) }
+    )
+    return decrypted.toString(CryptoJS.enc.Utf8);
