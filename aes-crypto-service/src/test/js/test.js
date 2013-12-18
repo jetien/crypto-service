@@ -15,11 +15,16 @@ describe("AES Cipher Service Test Suite", function () {
 
         var salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55"
         var iv = "F27D5C9927726BCEFE7510B1BDD3D137"
+        var key = "thewonderfuljasminetestkey".substring(0,16)
+        var key2 = "thejasminetestkeyfailure".substring(0,16)
 
         runs(function () {
-            var encoded = svc.encode("clement", "key", salt, iv);
-            expect(svc.decode(encoded, "key", salt, iv)).toBe("clement");
-            expect(svc.decode(encoded, "key2", salt, iv)).not.toBe("clement");
+            var encoded = svc.encode("clement", key, iv);
+            expect(svc.decode(encoded, key, iv)).toBe("clement");
+            expect(svc.decode(encoded, key2, iv)).not.toBe("clement");
+            var saltEncoded = svc.encodeWithSalt("clement", key, iv, salt);
+            expect(svc.decodeWithSalt(saltEncoded, key, iv, salt)).toBe("clement");
+            expect(svc.decodeWithSalt(saltEncoded, key2, iv, salt)).not.toBe("clement");
         });
     });
 

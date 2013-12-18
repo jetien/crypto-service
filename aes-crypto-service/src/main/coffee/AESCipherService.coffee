@@ -36,7 +36,7 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @return {String} then generated key
   @method
   @name #generateKey
-  @memborOf CryptoService.CipherService
+  @memberOf CryptoService.CipherService
   @param {String} the salt hex key
   @param {String} the passPhrase key
   ###
@@ -46,6 +46,46 @@ scope.CryptoService.AESCipherService = class AESCipherService
       CryptoJS.enc.Hex.parse(salt),
       { keySize: @keySize, iterations: @iterationCount })
     return genKey
+
+
+  ###*
+  Private method to encrypt message
+  @return {String} the encrypted message
+  @method
+  @name #encrypt
+  @memberOf CryptoService.CipherService
+  @param {String} the message to encrypt
+  @param {String} the hexadecimal key (given by default or generate with salt)
+  @param {String} the hexadecimal IV (initialization vector)
+  ###
+  encrypt:(message, key, iv)->
+    return CryptoJS.AES.encrypt(
+        message,
+        key,
+        { iv: CryptoJS.enc.Hex.parse(iv) }
+    )
+
+
+  ###*
+  Private method to decrypt message
+  @return {String} the decrypted message
+  @method
+  @name #decrypt
+  @memberOf CryptoService.CipherService
+  @param {String} the message to decrypt
+  @param {String} the hexadecimal key (given by default or generate with salt)
+  @param {String} the hexadecimal IV (initialization vector)
+  ###
+  decrypt:(message, key, iv)->
+    cipherParams = CryptoJS.lib.CipherParams.create({
+      ciphertext: CryptoJS.enc.Base64.parse(message)
+    })
+    return CryptoJS.AES.decrypt(
+        cipherParams,
+        key,
+        { iv: CryptoJS.enc.Hex.parse(iv) }
+    )
+
 
 
   ###*
@@ -59,11 +99,8 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the hexadecimal iv key (initialization vector)
   ###
   encode: (message, key, iv) ->
-    encrypted = CryptoJS.AES.encrypt(
-      message,
-      key,
-      { iv: CryptoJS.enc.Hex.parse(iv) });
-    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
+    encrypted = @encrypt(message, CryptoJS.enc.Hex.parse(key), iv)
+    return encrypted.ciphertext.toString(CryptoJS.enc.Base64)
 
 
   ###*
@@ -78,8 +115,9 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the hexadecimal salt key
   ###
   encodeWithSalt: (message, key, iv, salt) ->
-    genKey = this.generateKey(salt, key)
-    return encode(message, genKey, iv)
+    genKey = @generateKey(salt, key)
+    encrypted = @encrypt(message, genKey, iv)
+    return encrypted.ciphertext.toString(CryptoJS.enc.Base64)
 
 
   ###*
@@ -93,14 +131,7 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the hexadecimal iv key (initialization vector)
   ###
   decode: (message, key, iv) ->
-    cipherParams = CryptoJS.lib.CipherParams.create({
-      ciphertext: CryptoJS.enc.Base64.parse(message)
-    })
-    decrypted = CryptoJS.AES.decrypt(
-      cipherParams,
-      key,
-      { iv: CryptoJS.enc.Hex.parse(iv) }
-    )
+    decrypted = @decrypt(message, CryptoJS.enc.Hex.parse(key), iv)
     return decrypted.toString(CryptoJS.enc.Utf8);
 
 
@@ -108,7 +139,7 @@ scope.CryptoService.AESCipherService = class AESCipherService
   Decodes the given encoded message using the AES Cipher algorithm and Salt function
   @return {String} the decoded message.
   @method
-  @name #decode
+  @name #decodeWithSalt
   @memberOf CryptoService.CipherService
   @param {String} the message to decrypt
   @param {String} the encoding key
@@ -116,5 +147,6 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the hexadecimal salt key
   ###
   decodeWithSalt: (message, key, iv, salt) ->
-    genKey = this.generateKey(salt, key)
-    return decode(message, genKey, iv)
+    genKey = @generateKey(salt, key)
+    decrypted = @decrypt(message, genKey, iv)
+    return decrypted.toString(CryptoJS.enc.Utf8)

@@ -32,9 +32,21 @@ window.CryptoService.CipherService = {
     @memberOf CryptoService.CipherService
     @param {String} the message to encrypt
     @param {String} the encoding key
-    @param {Object} optional others parameters
+    @param {String} the hexadecimal iv key (initialization vector)
     ###
     encode: ->
+
+    ###*
+    @return {String} the encoded message.
+    @method
+    @name #encodeWithSalt
+    @memberOf CryptoService.CipherService
+    @param {String} the message to encrypt
+    @param {String} the encoding key
+    @param {String} the hexadecimal iv key (initialization vector)
+    @param {String} the hexadecimal salt key
+    ###
+    encodeWithSalt: ->
 
     ###*
     @return {String} the decoded message.
@@ -43,9 +55,21 @@ window.CryptoService.CipherService = {
     @memberOf CryptoService.CipherService
     @param {String} the message to decrypt
     @param {String} the encoding key
-    @param {Object} optional others parameters
+    @param {String} the hexadecimal iv key (initialization vector)
     ###
-    decode: ->	
+    decode: ->
+
+    ###*
+    @return {String} the decoded message.
+    @method
+    @name #decodeWithSalt
+    @memberOf CryptoService.CipherService
+    @param {String} the message to decrypt
+    @param {String} the encoding key
+    @param {String} the hexadecimal iv key (initialization vector)
+    @param {String} the hexadecimal salt key
+    ###
+    decodeWithSalt: ->
 
 }
 
