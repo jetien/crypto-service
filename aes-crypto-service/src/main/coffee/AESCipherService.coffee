@@ -12,8 +12,8 @@ scope.CryptoService.AESCipherService = class AESCipherService
   configure: (hub, configuration) ->
     @_hub = hub
     @_logger = new Logger("AES Cipher Service")
-    # AES encrypt key size (Default:256)
-    @keySize = if configuration?.keySize then (configuration.keySize / 32) else (256 / 32)
+    # AES encrypt key size (Default:128)
+    @keySize = if configuration?.keySize then (configuration.keySize / 32) else (128 / 32)
     # AES salt iteration (Default:20)
     @iterationCount = if configuration?.iterationCount then configuration.iterationCount else 20
     @_hub.provideService({
