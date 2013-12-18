@@ -56,16 +56,31 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @memberOf CryptoService.CipherService
   @param {String} the message to encrypt
   @param {String} the encoding key
-  @param {Object} optional others parameters
+  @param {String} the hexadecimal iv key (initialization vector)
   ###
-  encode: (message, key, salt, iv) ->
-    #return CryptoJS.AES.encrypt(message, key).toString()
-    genKey = this.generateKey(salt, key)
+  encode: (message, key, iv) ->
     encrypted = CryptoJS.AES.encrypt(
       message,
-      genKey,
+      key,
       { iv: CryptoJS.enc.Hex.parse(iv) });
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
+
+
+  ###*
+  Encodes the given message using the AES Cipher algorithm and Salt function
+  @return {String} the encoded message.
+  @method
+  @name #encodeWithSalt
+  @memberOf CryptoService.CipherService
+  @param {String} the message to encrypt
+  @param {String} the encoding key
+  @param {String} the hexadecimal iv key (initialization vector)
+  @param {String} the hexadecimal salt key
+  ###
+  encodeWithSalt: (message, key, iv, salt) ->
+    genKey = this.generateKey(salt, key)
+    return encode(message, genKey, iv)
+
 
   ###*
   Decodes the given encoded message using the AES Cipher algorithm
@@ -75,17 +90,31 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @memberOf CryptoService.CipherService
   @param {String} the message to decrypt
   @param {String} the encoding key
-  @param {Object} optional others parameters
+  @param {String} the hexadecimal iv key (initialization vector)
   ###
-  decode: (message, key, salt, iv) ->
-    #return CryptoJS.AES.decrypt(message, key).toString(CryptoJS.enc.Utf8)
-    genKey = this.generateKey(salt, key)
+  decode: (message, key, iv) ->
     cipherParams = CryptoJS.lib.CipherParams.create({
       ciphertext: CryptoJS.enc.Base64.parse(message)
     })
     decrypted = CryptoJS.AES.decrypt(
       cipherParams,
-      genKey,
+      key,
       { iv: CryptoJS.enc.Hex.parse(iv) }
     )
     return decrypted.toString(CryptoJS.enc.Utf8);
+
+
+  ###*
+  Decodes the given encoded message using the AES Cipher algorithm and Salt function
+  @return {String} the decoded message.
+  @method
+  @name #decode
+  @memberOf CryptoService.CipherService
+  @param {String} the message to decrypt
+  @param {String} the encoding key
+  @param {String} the hexadecimal iv key (initialization vector)
+  @param {String} the hexadecimal salt key
+  ###
+  decodeWithSalt: (message, key, iv, salt) ->
+    genKey = this.generateKey(salt, key)
+    return decode(message, genKey, iv)
