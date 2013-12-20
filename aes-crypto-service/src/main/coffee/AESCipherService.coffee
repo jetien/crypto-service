@@ -99,7 +99,7 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the hexadecimal iv key (initialization vector)
   ###
   encode: (message, key, iv) ->
-    encrypted = @encrypt(message, CryptoJS.enc.Hex.parse(key), iv)
+    encrypted = @encrypt(message, CryptoJS.enc.Utf8.parse(key), iv)
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64)
 
 
@@ -131,7 +131,7 @@ scope.CryptoService.AESCipherService = class AESCipherService
   @param {String} the hexadecimal iv key (initialization vector)
   ###
   decode: (message, key, iv) ->
-    decrypted = @decrypt(message, CryptoJS.enc.Hex.parse(key), iv)
+    decrypted = @decrypt(message, CryptoJS.enc.Utf8.parse(key), iv)
     return decrypted.toString(CryptoJS.enc.Utf8);
 
 
